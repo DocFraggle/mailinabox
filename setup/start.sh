@@ -105,18 +105,19 @@ source setup/mail-users.sh
 source setup/dkim.sh
 source setup/spamassassin.sh
 source setup/web.sh
-source setup/webmail.sh
-source setup/owncloud.sh
-source setup/zpush.sh
-source setup/management.sh
+#source setup/webmail.sh
+#source setup/owncloud.sh
+#source setup/zpush.sh
+#source setup/management.sh
 source setup/munin.sh
+source setup/horde.sh
 
 # Wait for the management daemon to start...
-until nc -z -w 4 127.0.0.1 10222
-do
-	echo Waiting for the Mail-in-a-Box management daemon to start...
-	sleep 2
-done
+#until nc -z -w 4 127.0.0.1 10222
+#do
+#	echo Waiting for the Mail-in-a-Box management daemon to start...
+#	sleep 2
+#done
 
 # ...and then have it write the DNS and nginx configuration files and start those
 # services.
@@ -132,7 +133,7 @@ restart_service fail2ban
 management/ssl_certificates.py -q
 
 # If there aren't any mail users yet, create one.
-source setup/firstuser.sh
+#source setup/firstuser.sh
 
 # Done.
 echo
